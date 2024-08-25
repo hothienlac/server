@@ -10,6 +10,7 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password
 
 networks:
   mysql:
