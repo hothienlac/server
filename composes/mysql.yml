@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - mysql
+
+networks:
+  mysql:
+    driver: bridge
+    external: true
+
+volumes:
+  mysql-data:
