@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql
+    image: mysql:8.3
     restart: unless-stopped
     ports:
       - 3306:3306
@@ -10,7 +10,7 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - mysql
-    command: ["mysqld", "--mysql-native-password"]
+    command: ["mysqld", "--mysql-native-password=ON"]
 
 networks:
   mysql:
