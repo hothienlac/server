@@ -14,13 +14,15 @@ services:
       DB_MYSQL_NAME: ${DB_MYSQL_NAME}
     networks:
       - nginx-proxy-manager
+      - mysql
     volumes:
       - nginx-proxy-manager-data:/data
       - nginx-proxy-manager-letsencrypt:/etc/letsencrypt
 
 networks:
   nginx-proxy-manager:
-    driver: bridge
+    external: true
+  mysql:
     external: true
 
 volumes:
