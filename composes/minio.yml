@@ -10,6 +10,7 @@ services:
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     networks:
       - minio
+      - nginx-proxy-manager
     volumes:
       - minio-data:/data
     command:
