@@ -21,3 +21,5 @@ volumes:
 networks:
   minio:
     external: true
+  nginx-proxy-manager:
+    external: true
