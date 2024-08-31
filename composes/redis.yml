@@ -1,0 +1,17 @@
+services:
+  image: redis/redis-stack
+  restart: unless-stopped
+  ports:
+    - 6379:6379
+    - 8001:8001
+  networks:
+    - redis
+  volumes:
+    - redis-data:/data
+
+networks:
+  redis:
+    external: true
+
+volumes:
+  redis-data:
