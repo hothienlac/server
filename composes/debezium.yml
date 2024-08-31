@@ -17,6 +17,8 @@ services:
       - 8080:8080
     environment:
       KAFKA_CONNECT_URIS: http://debezium:8083
+    networks:
+      - confluent
 
 networks:
   confluent:
