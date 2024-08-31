@@ -1,6 +1,7 @@
 services:
   debezium:
     image: debezium/connect
+    restart: unless-stopped
     ports:
       - 8083:8083
     environment:
@@ -13,12 +14,15 @@ services:
 
   debezium-ui:
     image: debezium/debezium-ui
+    restart: unless-stopped
     ports:
       - 8080:8080
     environment:
       KAFKA_CONNECT_URIS: http://debezium:8083
     networks:
       - confluent
+    depends_on:
+      - debezium
 
 networks:
   confluent:
