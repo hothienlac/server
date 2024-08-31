@@ -8,13 +8,13 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     networks:
-      - zookeeper
+      - confluent
     volumes:
       - zookeeper-data:/var/lib/zookeeper/data
       - zookeeper-logs:/var/lib/zookeeper/log
 
 networks:
-  zookeeper:
+  confluent:
     external: true
 
 volumes:
