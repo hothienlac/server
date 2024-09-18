@@ -6,8 +6,6 @@ services:
     privileged: true
     ports:
       - 8080:8080
-    environment:
-      - JENKINS_OPTS=--prefix=/jenkins
     networks:
       - jenkins
       - nginx-proxy-manager
