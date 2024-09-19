@@ -1,13 +1,29 @@
 services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    restart: unless-stopped
+    ports:
+      - 2181:2181
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - confluent
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-logs:/var/lib/zookeeper/log
+
   kafka:
     image: confluentinc/cp-kafka
+    depends_on:
+      - zookeeper
     restart: unless-stopped
     ports:
       - 9092:9092
       - 9101:9101
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -23,6 +39,8 @@ services:
 
   redpanda-console:
     image: docker.redpanda.com/redpandadata/console
+    depends_on:
+      - kafka
     restart: unless-stopped
     ports:
       - 18080:8080
@@ -31,10 +49,11 @@ services:
     networks:
       - confluent
 
-
 networks:
   confluent:
     external: true
 
 volumes:
   kafka-data:
+  zookeeper-data:
+  zookeeper-logs:
