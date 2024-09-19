@@ -1,0 +1,15 @@
+services:
+  authelia:
+    image: authelia/authelia
+    restart: unless-stopped
+    networks:
+      - nginx-proxy-manager
+      - authelia
+    volumes:
+      - ./config:/config
+
+networks:
+  nginx-proxy-manager:
+    external: true
+  authelia:
+    external: true

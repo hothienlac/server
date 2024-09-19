@@ -1,0 +1,41 @@
+server:
+  host: 0.0.0.0
+  port: 9091
+
+session:
+  name: authelia_session
+  secret: a_very_secret_session_key
+  expiration: 1h
+  in_memory: false
+  redis:
+    host: ${AUTHELIA_REDIS_HOST}
+    port: ${AUTHELIA_REDIS_PORT}
+    database_index: 0
+
+storage:
+  encryption_key: ${AUTHELIA_ENCRYPTION_KEY}
+  postgres:
+    host: ${AUTHELIA_POSTGRES_HOST}
+    port: ${AUTHELIA_POSTGRES_PORT}
+    database: ${AUTHELIA_POSTGRES_DB}
+    username: ${AUTHELIA_POSTGRES_USERNAME}
+    password: ${AUTHELIA_POSTGRES_PASSWORD}
+    sslmode: disable
+
+authentication_backend:
+  postgres:
+    host: ${AUTHELIA_POSTGRES_HOST}
+    port: ${AUTHELIA_POSTGRES_PORT}
+    database: ${AUTHELIA_POSTGRES_DB}
+    username: ${AUTHELIA_POSTGRES_USERNAME}
+    password: ${AUTHELIA_POSTGRES_PASSWORD}
+    sslmode: disable
+  password_reset:
+    token_lifespan: 24h
+
+access_control:
+  default_policy: deny
+
+  rules:
+    - domain: app.local
+      policy: one_factor
