@@ -21,10 +21,20 @@ services:
     volumes:
       - kafka-data:/var/lib/kafka/data
 
+  redpanda-console:
+    image: docker.redpanda.com/redpandadata/console
+    restart: unless-stopped
+    ports:
+      - 18080:8080
+    environment:
+      KAFKA_BROKERS: kafka:9092
+    networks:
+      - confluent
+
+
 networks:
   confluent:
     external: true
 
 volumes:
   kafka-data:
-  
