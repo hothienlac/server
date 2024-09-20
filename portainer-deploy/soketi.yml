@@ -1,0 +1,30 @@
+services:
+  soketi:
+    image: quay.io/soketi/soketi
+    restart: unless-stopped
+    ports:
+      - 6001:6001
+    environment:
+      - SOKETI_ADAPTER_DRIVER=redis
+      - SOKETI_ADAPTER_REDIS_PREFIX=soketi
+      - SOKETI_APP_MANAGER_DRIVER=postgres
+      - SOKETI_APP_MANAGER_CACHE_ENABLED=true
+      - SOKETI_DB_POSTGRES_HOST=postgres
+      - SOKETI_DB_POSTGRES_PORT=5432
+      - SOKETI_DB_POSTGRES_USERNAME=soketi
+      - SOKETI_DB_POSTGRES_PASSWORD=soketi
+      - SOKETI_DB_POSTGRES_DATABASE=soketi
+      - SOKETI_DB_REDIS_HOST=redis
+      - SOKETI_DB_REDIS_PORT=6379
+      - SOKETI_DB_REDIS_DB=6
+      - SOKETI_HOST=0.0.0.0
+      - SOKETI_QUEUE_DRIVER=redis
+    networks:
+      - soketi
+      - nginx-proxy-manager
+
+networks:
+  soketi:
+    external: true
+  nginx-proxy-manager:
+    external: true
