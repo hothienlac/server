@@ -21,10 +21,16 @@ services:
       - SOKETI_QUEUE_DRIVER=redis
     networks:
       - soketi
+      - redis
+      - postgres
       - nginx-proxy-manager
 
 networks:
   soketi:
+    external: true
+  redis:
+    external: true
+  postgres:
     external: true
   nginx-proxy-manager:
     external: true
