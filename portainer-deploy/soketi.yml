@@ -25,6 +25,7 @@ services:
       - postgres
       - nginx-proxy-manager
 
+
 networks:
   soketi:
     external: true
