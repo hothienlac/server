@@ -1,0 +1,12 @@
+services:
+  portfolio:
+    image: hothienlac/portfolio
+    restart: unless-stopped
+    ports:
+      - 8888:8888
+    networks:
+      - nginx-proxy-manager
+
+networks:
+  nginx-proxy-manager:
+    external: true
