@@ -1,0 +1,35 @@
+services:
+  nextcloud:
+    image: nextcloud
+    networks:
+      - nextcloud
+      - postgres
+      - redis
+      - minio
+      - nginx-proxy-manager
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DATABASE: $POSTGRES_DATABASE
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      OBJECTSTORE_S3_BUCKET: nextcloud
+      OBJECTSTORE_S3_HOST: minio
+      OBJECTSTORE_S3_PORT: 9000
+      OBJECTSTORE_S3_KEY: $MINIO_ACCESS_KEY
+      OBJECTSTORE_S3_SECRET: $MINIO_SECRET_KEY
+    restart: always
+
+
+networks:
+  nextcloud:
+    external: true
+  postgres:
+    external: true
+  redis:
+    external: true
+  minio:
+    external: true
+  nginx-proxy-manager:
+    external: true
