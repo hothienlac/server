@@ -1,6 +1,9 @@
 services:
   nextcloud:
     image: nextcloud
+    restart: unless-stopped
+    ports:
+      - 18888:80
     networks:
       - nextcloud
       - postgres
@@ -19,7 +22,6 @@ services:
       OBJECTSTORE_S3_PORT: 9000
       OBJECTSTORE_S3_KEY: $OBJECTSTORE_S3_KEY
       OBJECTSTORE_S3_SECRET: $OBJECTSTORE_S3_SECRET
-    restart: always
 
 
 networks:
