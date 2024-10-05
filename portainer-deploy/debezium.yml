@@ -27,3 +27,5 @@ services:
 networks:
   confluent:
     external: true
+  postgres:
+    external: true
