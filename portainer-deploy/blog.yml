@@ -1,0 +1,12 @@
+services:
+  blog:
+    image: hothienlac/blog
+    restart: unless-stopped
+    ports:
+      - 18081:8000
+    networks:
+      - nginx-proxy-manager
+
+networks:
+  nginx-proxy-manager:
+    external: true
