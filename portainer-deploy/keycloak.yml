@@ -23,7 +23,7 @@ services:
       KC_DB_URL: "jdbc:postgresql://postgres:5432/${POSTGRES_DB}?useSSL=false"
       KC_DB_USERNAME: ${KC_DB_USERNAME}
       KC_DB_PASSWORD: ${KC_DB_PASSWORD}
-    command: start
+    command: start --https-generated-key-store=/opt/keycloak/data/keystore.jks --https-key-store-password=changeit
 
 networks:
   keycloak:
