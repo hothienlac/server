@@ -1,35 +1,21 @@
 services:
-  cert-generator:
-    image: alpine
-    command: >
-      sh -c "
-      mkdir -p /certs &&
-      if [ ! -f /certs/tls.crt ] || [ ! -f /certs/tls.key ]; then
-        echo 'Generating self-signed certificates...' &&
-        openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-          -keyout /certs/tls.key \
-          -out /certs/tls.crt \
-          -subj '/CN=keycloak.hothienlac.com';
-      else
-        echo 'Certificates already exist. Skipping generation.';
-      fi"
-    volumes:
-      - keycloak-certs:/certs
-
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     restart: unless-stopped
     ports:
-      - 8082:443
+      - 8082:8080
     networks:
       - keycloak
       - postgres
       - nginx-proxy-manager
     environment:
       KC_HOSTNAME: keycloak.hothienlac.com
-      KC_HOSTNAME_PORT: 443
-      KC_HTTP_ENABLED: false
+      KC_HOSTNAME_PORT: 8080
+      KC_HTTP_ENABLED: true
       KC_HOSTNAME_STRICT_HTTPS: true
+      KC_HOSTNAME_STRICT: true
+      KC_HOSTNAME_STRICT_BACKCHANNEL: true
+      KC_PROXY: edge
       KC_HEALTH_ENABLED: true
 
       KEYCLOAK_ADMIN: $KEYCLOAK_ADMIN
@@ -39,12 +25,7 @@ services:
       KC_DB_URL: "jdbc:postgresql://postgres:5432/${POSTGRES_DB}?useSSL=false"
       KC_DB_USERNAME: ${KC_DB_USERNAME}
       KC_DB_PASSWORD: ${KC_DB_PASSWORD}
-
-    depends_on:
-      - cert-generator
-    volumes:
-      - keycloak-certs:/etc/x509/https
-    command: start --https-certificate-file=/etc/x509/https/tls.crt --https-certificate-key-file=/etc/x509/https/tls.key
+    command: start
 
 networks:
   keycloak:
@@ -53,6 +34,3 @@ networks:
     external: true
   nginx-proxy-manager:
     external: true
-
-volumes:
-  keycloak-certs:
