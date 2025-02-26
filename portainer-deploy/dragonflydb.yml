@@ -3,7 +3,7 @@ services:
     image: ubuntu:latest
     container_name: cert-generator
     command: >
-      sh -c "apt update && apt install openssl && openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
+      sh -c "apt update && apt install openssl -y && openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
              -keyout /certs/dragonfly.key -out /certs/dragonfly.crt \
              -subj '/C=US/ST=State/L=City/O=Organization/CN=dragonfly.local'"
     volumes:
@@ -13,9 +13,9 @@ services:
     image: 'docker.dragonflydb.io/dragonflydb/dragonfly:latest'
     container_name: dragonflydb
     restart: always
-    # depends_on:
-    #   cert-generator:
-    #     condition: service_completed_successfully
+    depends_on:
+      cert-generator:
+        condition: service_completed_successfully
     ports:
       - '6378:6379'
     volumes:
