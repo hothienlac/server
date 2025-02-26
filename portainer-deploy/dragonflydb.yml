@@ -3,7 +3,7 @@ services:
     image: ubuntu:latest
     container_name: cert-generator
     command: >
-      sh -c "openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
+      sh -c "apt install openssl && openssl req -x509 -nodes -days 3650 -newkey rsa:4096 \
              -keyout /certs/dragonfly.key -out /certs/dragonfly.crt \
              -subj '/C=US/ST=State/L=City/O=Organization/CN=dragonfly.local'"
     volumes:
