@@ -30,7 +30,6 @@ services:
       - "--maxmemory=1gb"
       - "--dir=/data"
       - "--save_schedule=*:60"
-      - "--maxmemory-policy=allkeys-lfu"
     environment:
       DRAGONFLY_PASSWORD: ${DRAGONFLY_PASSWORD}
 
