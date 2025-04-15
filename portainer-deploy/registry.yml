@@ -23,7 +23,7 @@ services:
       - "8080:80"
     environment:
       - REGISTRY_TITLE=Ho Thien Lac Images Registry
-      - REGISTRY_URL=http://registry:5000
+      - REGISTRY_URL=https://registry.hothienlac.com
       - DELETE_IMAGES=true
       - SINGLE_REGISTRY=true
       - SHOW_CONTENT_DIGEST=true
