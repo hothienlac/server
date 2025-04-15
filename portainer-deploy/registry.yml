@@ -1,0 +1,40 @@
+services:
+  registry:
+    image: registry:2
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+    volumes:
+      - registry-data:/var/lib/registry
+      - auth:/auth
+    networks:
+      - registry
+      - nginx-proxy-manager
+    depends_on:
+      - htpasswd
+
+  htpasswd:
+    image: httpd:2.4
+    entrypoint: >
+      bash -c "
+      htpasswd -Bbc /auth/htpasswd \"$REGISTRY_USER\" \"$REGISTRY_PASS\"
+      "
+    environment:
+      REGISTRY_USER: myuser
+      REGISTRY_PASS: mypass
+    volumes:
+      - auth:/auth
+
+networks:
+  registry:
+    external: true
+  nginx-proxy-manager:
+    external: true
+
+volumes:
+  registry-data:
+  auth:
