@@ -24,8 +24,8 @@ services:
       htpasswd -Bbc /auth/htpasswd \"$REGISTRY_USER\" \"$REGISTRY_PASS\"
       "
     environment:
-      REGISTRY_USER: myuser
-      REGISTRY_PASS: mypass
+      REGISTRY_USER: ${REGISTRY_USER}
+      REGISTRY_PASS: ${REGISTRY_PASS}
     volumes:
       - auth:/auth
 
