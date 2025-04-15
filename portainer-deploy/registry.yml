@@ -17,6 +17,22 @@ services:
     depends_on:
       - htpasswd
 
+  registry-ui:
+    image: joxit/docker-registry-ui:main
+    ports:
+      - "8080:80"
+    environment:
+      - REGISTRY_TITLE=Ho Thien Lac Images Registry
+      - REGISTRY_URL=http://registry:5000
+      - DELETE_IMAGES=true
+      - SINGLE_REGISTRY=true
+      - SHOW_CONTENT_DIGEST=true
+    networks:
+      - registry
+      - nginx-proxy-manager
+    depends_on:
+      - registry
+
   htpasswd:
     image: httpd:2.4
     entrypoint: >
