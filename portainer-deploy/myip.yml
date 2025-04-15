@@ -1,0 +1,16 @@
+services:
+  myip:
+    image: registry.hothienlac.com/myip
+    restart: unless-stopped
+    networks:
+      - myip
+      - nginx-proxy-manager
+
+volumes:
+  myip_data:
+
+networks:
+  myip:
+    external: true
+  nginx-proxy-manager:
+    external: true
