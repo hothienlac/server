@@ -8,9 +8,9 @@ services:
       REGISTRY_AUTH: htpasswd
       REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
       REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin: ['*']
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods: ['GET', 'DELETE', 'OPTIONS']
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers: ['Authorization', 'Accept']
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin: "['*']"
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods: "['GET', 'DELETE', 'OPTIONS']"
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers: "['Authorization', 'Accept']"
     volumes:
       - registry-data:/var/lib/registry
       - auth:/auth
