@@ -1,0 +1,14 @@
+services:
+  qdrant:
+    image: qdrant/qdrant
+    restart: always
+    ports:
+      - 6333:6333
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - qdrant
+
+networks:
+  qdrant:
+    external: true
