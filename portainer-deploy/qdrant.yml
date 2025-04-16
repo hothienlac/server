@@ -12,3 +12,6 @@ services:
 networks:
   qdrant:
     external: true
+
+volumes:
+  qdrant_data:
