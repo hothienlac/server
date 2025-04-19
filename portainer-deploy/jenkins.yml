@@ -5,7 +5,7 @@ services:
     user: root
     privileged: true
     ports:
-      - 18081:8080
+      - 18082:8080
     networks:
       - jenkins
       - nginx-proxy-manager
