@@ -5,8 +5,6 @@ services:
     restart: unless-stopped
     user: root
     privileged: true
-    ports:
-      - 18082:8080
     networks:
       - jenkins
       - nginx-proxy-manager

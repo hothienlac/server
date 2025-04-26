@@ -2,8 +2,6 @@ services:
   nextcloud:
     image: nextcloud
     restart: unless-stopped
-    ports:
-      - 18888:80
     networks:
       - nextcloud
       - postgres

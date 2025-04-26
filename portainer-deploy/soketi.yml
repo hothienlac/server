@@ -2,8 +2,6 @@ services:
   soketi:
     image: quay.io/soketi/soketi
     restart: unless-stopped
-    ports:
-      - 6001:6001
     environment:
       - SOKETI_ADAPTER_DRIVER=redis
       - SOKETI_ADAPTER_REDIS_PREFIX=soketi

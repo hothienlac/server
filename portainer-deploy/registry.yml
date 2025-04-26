@@ -2,8 +2,6 @@ services:
   registry:
     image: registry:2
     restart: unless-stopped
-    ports:
-      - "5000:5000"
     environment:
       REGISTRY_AUTH: htpasswd
       REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
@@ -19,22 +17,6 @@ services:
       - nginx-proxy-manager
     depends_on:
       - htpasswd
-
-  registry-ui:
-    image: joxit/docker-registry-ui:main
-    ports:
-      - "8080:80"
-    environment:
-      - REGISTRY_TITLE=Ho Thien Lac Images Registry
-      - REGISTRY_URL=https://registry.hothienlac.com
-      - DELETE_IMAGES=true
-      - SINGLE_REGISTRY=true
-      - SHOW_CONTENT_DIGEST=true
-    networks:
-      - registry
-      - nginx-proxy-manager
-    depends_on:
-      - registry
 
   htpasswd:
     image: httpd:2.4

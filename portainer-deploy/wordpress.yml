@@ -2,8 +2,6 @@ services:
   wordpress:
     image: wordpress
     restart: unless-stopped
-    ports:
-      - 18000:80
     environment:
       WORDPRESS_DB_HOST: mysql:3306
       WORDPRESS_DB_USER: $WORDPRESS_DB_USER
