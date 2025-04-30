@@ -18,3 +18,5 @@ volumes:
 networks:
   grafana:
     external: true
+  nginx-proxy-manager:
+    external: true
