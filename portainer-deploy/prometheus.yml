@@ -6,7 +6,6 @@ services:
       - prometheus_data:/prometheus
     networks:
       - prometheus
-      - grafana
 
 volumes:
   prometheus_data:
