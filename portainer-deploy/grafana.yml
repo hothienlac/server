@@ -10,6 +10,13 @@ services:
     networks:
       - grafana
       - nginx-proxy-manager
+      - influxdb
+      - postgres
+      - mysql
+      - prometheus
+      - loki
+      - tempo
+      - otel
 
 
 volumes:
@@ -20,3 +27,18 @@ networks:
     external: true
   nginx-proxy-manager:
     external: true
+  influxdb:
+    external: true
+  postgres:
+    external: true
+  mysql:
+    external: true
+  prometheus:
+    external: true
+  loki:
+    external: true
+  tempo:
+    external: true
+  otel:
+    external: true
+

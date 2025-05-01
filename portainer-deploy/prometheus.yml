@@ -1,0 +1,16 @@
+services:
+  prometheus:
+    image: registry.hothienlac.com/prometheus:latest
+    restart: unless-stopped
+    volumes:
+      - prometheus_data:/prometheus
+    networks:
+      - prometheus
+      - grafana
+
+volumes:
+  prometheus_data:
+
+networks:
+  prometheus:
+    external: true
