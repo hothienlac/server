@@ -9,15 +9,9 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     restart: unless-stopped
     networks:
-      - nginx-proxy-manager
       - prometheus
-      - cadvisor
 
 
 networks:
-  nginx-proxy-manager:
-    external: true
   prometheus:
-    external: true
-  cadvisor:
     external: true
