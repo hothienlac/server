@@ -32,4 +32,4 @@ networks:
     external: true
 
 volumes:
-  postgres-data:
+  pg17-data:
