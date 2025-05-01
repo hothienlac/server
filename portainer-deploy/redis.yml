@@ -10,8 +10,21 @@ services:
     volumes:
       - redis-data:/data
 
+  redis_exporter:
+    image: oliver006/redis_exporter:v1.61.0
+    networks:
+      - redis
+      - prometheus
+    environment:
+      REDIS_ADDR: "redis://redis:6379"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
 networks:
   redis:
+    external: true
+  prometheus:
     external: true
 
 volumes:
