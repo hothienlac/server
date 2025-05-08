@@ -8,7 +8,7 @@ services:
     environment:
       - KAFKA_KRAFT_MODE=true
       - KAFKA_CFG_NODE_ID=1
-      - KAFKA_KRAFT_CLUSTER_ID=kraft-cluster-id-123
+      - KAFKA_KRAFT_CLUSTER_ID=OTMwNzFhYTY1ODNiNGE5OT
       - KAFKA_CFG_PROCESS_ROLES=broker,controller
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
