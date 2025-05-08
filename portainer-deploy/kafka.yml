@@ -18,6 +18,8 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
       - kafka-data:/bitnami/kafka
+    networks:
+      - kafka
 
   redpanda-console:
     image: docker.redpanda.com/redpandadata/console
