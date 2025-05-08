@@ -4,6 +4,7 @@ services:
     ports:
       - "9092:9092"
       - "9093:9093"
+    restart: unless-stopped
     environment:
       - KAFKA_KRAFT_MODE=true
       - KAFKA_CFG_NODE_ID=1
