@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql:8.3
+    image: mysql:9.3
     restart: unless-stopped
     ports:
       - 3306:3306
