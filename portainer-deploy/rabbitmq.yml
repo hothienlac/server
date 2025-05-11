@@ -13,6 +13,7 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
     networks:
       - rabbitmq
+      - nginx-proxy-manager
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 10s
@@ -26,4 +27,6 @@ volumes:
 
 networks:
   rabbitmq:
+    external: true
+  nginx-proxy-manager:
     external: true
