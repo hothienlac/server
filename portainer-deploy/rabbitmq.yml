@@ -18,7 +18,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    command: rabbitmq-plugins enable --offline rabbitmq_management
+    command: >
+      bash -c "rabbitmq-plugins enable --offline rabbitmq_management && rabbitmq-server"
 
 volumes:
   rabbitmq_data:
