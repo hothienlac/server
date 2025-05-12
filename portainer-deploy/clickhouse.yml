@@ -5,9 +5,9 @@ services:
     networks:
       - clickhouse
     ports:
-      - "18123:8123"
-      - "19001:9000"
-      - "19008:9009"
+      - "8123:8123"
+      - "9000:9000"
+      - "90009:9009"
     volumes:
       - clickhouse_data:/var/lib/clickhouse
       - clickhouse_logs:/log/clickhouse-server
